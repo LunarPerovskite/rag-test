@@ -1,10 +1,10 @@
-# Iowa Wells RAG Chat Interface 🏔️
+# Wells RAG Chat Interface 🏔️
 
-A beautiful and intelligent chat interface for exploring Iowa geological wells data using advanced RAG (Retrieval-Augmented Generation) technology.
+A beautiful and intelligent chat interface for exploring geological wells data using advanced RAG (Retrieval-Augmented Generation) technology.
 
 ## Features
 
-- 🎯 **Intelligent Query Processing**: Ask natural language questions about Iowa wells
+- 🎯 **Intelligent Query Processing**: Ask natural language questions about wells
 - 📊 **Context Source Display**: See exactly where information comes from
 - 🗺️ **MCR Geographic Intelligence**: Understands Mid-Continental Rift vs non-MCR counties
 - 💬 **Chat History**: Keep track of your conversation
@@ -22,7 +22,7 @@ A beautiful and intelligent chat interface for exploring Iowa geological wells d
    PINECONE_API_KEY=your_pinecone_api_key_here
    ```
 
-2. **Main File**: `iowa_wells_chat.py`
+2. **Main File**: `wells_chat.py`
 
 3. **Dependencies**: Automatically installed from `requirements.txt`
 
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 cp .env.example .env
 
 # Run the application
-streamlit run iowa_wells_chat.py
+streamlit run wells_chat.py
 ```
 
 ## Prerequisites
@@ -49,7 +49,7 @@ streamlit run iowa_wells_chat.py
 2. **Environment Variables**: 
    - `OPENAI_API_KEY`: Your OpenAI API key
    - `PINECONE_API_KEY`: Your Pinecone API key
-3. **Vector Database**: The Pinecone index `nhv-iowa-wells` should be populated with 551 Iowa wells data
+3. **Vector Database**: The Pinecone index should be populated with wells data
 
 ## MCR Geographic Intelligence
 
@@ -64,7 +64,7 @@ Try asking questions like:
 
 - "What are the deepest wells in Dallas County?"
 - "Show me gas storage wells drilled by Sterling Drilling"
-- "What is the typical bedrock depth in central Iowa counties?"
+- "What is the typical bedrock depth in central counties?"
 - "Find wells with total depth greater than 3000 feet"
 - "Tell me about municipal wells in Polk County"
 - "What drilling companies are most active in the database?"
@@ -113,9 +113,9 @@ Try asking questions like:
 
 ## Database Information
 
-The chat interface connects to the `nhv-iowa-wells` Pinecone index containing:
+The chat interface connects to the Pinecone index containing:
 
-- **551 Iowa Geological Wells** across 64 counties
+- **551 Geological Wells** across 64 counties
 - **6,266 Text Chunks** with comprehensive metadata
 - **2,432 PDF Documents** with full-text search capability
 - **Zero Processing Errors** - high-quality, clean data
@@ -124,7 +124,7 @@ The chat interface connects to the `nhv-iowa-wells` Pinecone index containing:
 
 Each source includes:
 - `well_id`: Unique well identifier
-- `county`: Iowa county location
+- `county`: County location
 - `owner_name`: Well owner information
 - `total_depth`: Well depth in feet
 - `well_types`: Classification (municipal, gas storage, etc.)
@@ -141,7 +141,7 @@ Each source includes:
    - Verify OPENAI_API_KEY and PINECONE_API_KEY are set
 
 2. **"Connection failed"**
-   - Ensure Pinecone index `nhv-iowa-wells` exists
+   - Ensure Pinecone index exists
    - Check internet connectivity
    - Verify API keys are valid
 
@@ -164,7 +164,7 @@ Each source includes:
 
 ```
 9_UI/
-├── iowa_wells_chat.py      # Main Streamlit application
+├── wells_chat.py           # Main Streamlit application
 ├── launch_chat.py          # Python launcher script
 ├── launch_chat.ps1         # PowerShell launcher script
 ├── requirements.txt        # Python dependencies
@@ -177,8 +177,8 @@ Each source includes:
 
 The chat interface is built with modularity in mind:
 
-- **Custom Styling**: Modify the CSS in `iowa_wells_chat.py`
-- **New Features**: Add functions to the `IowaWellsChatInterface` class
+- **Custom Styling**: Modify the CSS in `wells_chat.py`
+- **New Features**: Add functions to the `WellsChatInterface` class
 - **Query Customization**: Adjust retrieval parameters in `initialize_rag_system()`
 - **UI Components**: Add new Streamlit components in the `run()` method
 
@@ -187,7 +187,7 @@ The chat interface is built with modularity in mind:
 Key parameters you can adjust:
 
 ```python
-# In iowa_wells_chat.py
+# In wells_chat.py
 similarity_top_k=5          # Number of sources to retrieve
 response_mode="compact"     # Response generation mode
 temperature=0.1             # LLM creativity (0.0-1.0)
@@ -205,4 +205,4 @@ For issues or questions:
 
 ---
 
-**Built with ❤️ for Iowa geological data exploration**
+**Built with ❤️ for geological data exploration**

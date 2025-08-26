@@ -41,7 +41,7 @@ def launch_streamlit():
     """Launch the Streamlit application."""
     print("🚀 Starting Iowa Wells RAG Chat Interface...")
     
-    app_file = Path(__file__).parent / "iowa_wells_chat.py"
+    app_file = Path(__file__).parent / "wells_chat.py"
     
     try:
         subprocess.run([

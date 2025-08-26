@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Iowa Wells RAG Chat Interface
-A beautiful chat UI for querying the Iowa geological wells vector database.
+Wells RAG Chat Interface
+A beautiful chat UI for querying the geological wells vector database.
 Features context source display and conversation history.
 """
 
@@ -9,7 +9,7 @@ import streamlit as st
 
 # Configure Streamlit page - MUST BE FIRST!
 st.set_page_config(
-    page_title="Iowa Wells RAG Chat",
+    page_title="Wells RAG Chat",
     page_icon="🏔️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -151,8 +151,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-class IowaWellsChatInterface:
-    """Main chat interface class for Iowa Wells RAG system."""
+class WellsChatInterface:
+    """Main chat interface class for Wells RAG system."""
     
     def __init__(self):
         """Initialize the chat interface."""
@@ -215,11 +215,11 @@ class IowaWellsChatInterface:
             st.session_state.vector_index = index
             
             # Define system prompt
-            system_prompt = """You are a Retrieval-Augmented Generation (RAG) agent specialized in geological data exploration in Iowa. You support hydrocarbons, basin analysis, tectonics, mineral systems, and general geology.
+            system_prompt = """You are a Retrieval-Augmented Generation (RAG) agent specialized in geological data exploration. You support hydrocarbons, basin analysis, tectonics, mineral systems, and general geology.
 
 Geographic Knowledge
 
-Mid-Continental Rift (MCR) Counties in Iowa:
+Mid-Continental Rift (MCR) Counties:
 Adair, Adams, Audubon, Benton, Black Hawk, Boone, Bremer, Buena Vista, Butler, Calhoun, Carroll, Cass, Cerro Gordo, Chickasaw, Clarke, Crawford, Dallas, Decatur, Floyd, Franklin, Fremont, Greene, Grundy, Guthrie, Hamilton, Hancock, Hardin, Harrison, Howard, Humboldt, Ida, Jasper, Kossuth, Madison, Mahaska, Marion, Marshall, Mills, Mitchell, Monona, Montgomery, Page, Palo Alto, Pocahontas, Polk, Pottawattamie, Poweshiek, Ringgold, Sac, Shelby, Story, Tama, Taylor, Union, Warren, Webster, Winnebago, Worth, Wright.
 
 When asked about wells "inside the MCR" or "outside the MCR", use this county list to classify wells accordingly. Wells in counties not listed above are considered outside the MCR.
@@ -431,10 +431,10 @@ Always prefer accuracy and clarity over verbosity."""
         st.markdown("### 💡 Example Queries")
         
         examples = [
-            "What formations are commonly encountered in Iowa wells?",
+            "What formations are commonly encountered in wells?",
             "Show me wells with oil shows in the Mississippian formation",
             "Find wells with significant water production",
-            "What's the deepest Cambrian penetration in Iowa?",
+            "What's the deepest Cambrian penetration?",
             "Compare Devonian formation depths across counties"
         ]
         
@@ -473,8 +473,8 @@ Always prefer accuracy and clarity over verbosity."""
     def run(self):
         """Run the main chat interface."""
         # Header
-        st.markdown('<h1 class="main-header">🏔️ Iowa Wells RAG Chat</h1>', unsafe_allow_html=True)
-        st.markdown('<p class="sub-header">Intelligent geological data exploration for Iowa >2000 ft wells</p>', unsafe_allow_html=True)
+        st.markdown('<h1 class="main-header">🏔️ Wells RAG Chat</h1>', unsafe_allow_html=True)
+        st.markdown('<p class="sub-header">Intelligent geological data exploration for wells >2000 ft</p>', unsafe_allow_html=True)
         
         # Database connection button (outside sidebar)
         if st.session_state.query_engine is None:
@@ -558,9 +558,7 @@ Always prefer accuracy and clarity over verbosity."""
                         self.display_context_sources(message["sources"])
             
             # Chat input - always visible at the bottom
-            user_input = st.chat_input("Ask me anything about Iowa geological wells...")
-            
-            # Handle example query selection
+                user_input = st.chat_input("Ask me anything about geological wells...")            # Handle example query selection
             if hasattr(st.session_state, 'example_query'):
                 user_input = st.session_state.example_query
                 delattr(st.session_state, 'example_query')
@@ -576,7 +574,7 @@ Always prefer accuracy and clarity over verbosity."""
                 
                 # Generate response
                 with st.chat_message("assistant", avatar="🤖"):
-                    with st.spinner("Searching Iowa wells database..."):
+                    with st.spinner("Searching wells database..."):
                         try:
                             # Get response
                             response = st.session_state.query_engine.query(user_input)
@@ -614,7 +612,7 @@ Always prefer accuracy and clarity over verbosity."""
 def main():
     """Main function to run the chat interface."""
     try:
-        chat_interface = IowaWellsChatInterface()
+        chat_interface = WellsChatInterface()
         chat_interface.run()
     except Exception as e:
         st.error(f"Failed to initialize chat interface: {str(e)}")
