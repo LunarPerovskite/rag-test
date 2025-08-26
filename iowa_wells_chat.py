@@ -10,7 +10,7 @@ import streamlit as st
 # Configure Streamlit page - MUST BE FIRST!
 st.set_page_config(
     page_title="Iowa Wells RAG Chat",
-    page_icon="public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp",
+    page_icon="🏔️",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -215,7 +215,7 @@ class IowaWellsChatInterface:
             st.session_state.vector_index = index
             
             # Define system prompt
-            system_prompt = """You are a Retrieval-Augmented Generation (RAG) agent specialized in Natural Hydrogen exploration in the Mid-Continental Rift (Iowa). You also support hydrocarbons, basin analysis, tectonics, mineral systems, and general geology.
+            system_prompt = """You are a Retrieval-Augmented Generation (RAG) agent specialized in geological data exploration in Iowa. You support hydrocarbons, basin analysis, tectonics, mineral systems, and general geology.
 
 Geographic Knowledge
 
@@ -472,46 +472,8 @@ Always prefer accuracy and clarity over verbosity."""
     
     def run(self):
         """Run the main chat interface."""
-        # Header with NHV Logo and GEARS Map logo
-        col1, col2, col3 = st.columns([1, 2, 1])
-        
-        # NHV Logo (center)
-        with col2:
-            try:
-                st.image("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Full.webp", width=400)
-            except:
-                st.markdown('<h1 class="main-header">🏔️ Iowa Wells RAG Chat</h1>', unsafe_allow_html=True)
-        
-        # GEARS Map logo (top right)
-        with col3:
-            st.markdown("""
-            <style>
-            .gears-logo {
-                opacity: 0.6;
-                transition: opacity 0.3s ease;
-                margin-top: 10px;
-            }
-            .gears-logo:hover {
-                opacity: 1.0;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-            
-            try:
-                import base64
-                with open("public/LOGO-GEARS-MAP_ico.ico", "rb") as f:
-                    icon_data = base64.b64encode(f.read()).decode()
-                st.markdown(
-                    f'<div style="text-align: right;">'
-                    f'<a href="https://www.gearsmap.com" target="_blank">'
-                    f'<img src="data:image/x-icon;base64,{icon_data}" width="30" class="gears-logo">'
-                    f'</a>'
-                    f'</div>', 
-                    unsafe_allow_html=True
-                )
-            except:
-                st.markdown('<div style="margin-top: 10px; text-align: right;"><a href="https://www.gearsmap.com" target="_blank" style="opacity: 0.6; font-size: 12px;">🗺️</a></div>', unsafe_allow_html=True)
-        
+        # Header
+        st.markdown('<h1 class="main-header">🏔️ Iowa Wells RAG Chat</h1>', unsafe_allow_html=True)
         st.markdown('<p class="sub-header">Intelligent geological data exploration for Iowa >2000 ft wells</p>', unsafe_allow_html=True)
         
         # Database connection button (outside sidebar)
@@ -583,7 +545,7 @@ Always prefer accuracy and clarity over verbosity."""
             
             # Display chat messages
             for message in st.session_state.messages:
-                avatar = "public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp" if message["role"] == "assistant" else None
+                avatar = "🤖" if message["role"] == "assistant" else None
                 with st.chat_message(message["role"], avatar=avatar):
                     # Add well links to assistant messages
                     content = message["content"]
@@ -613,7 +575,7 @@ Always prefer accuracy and clarity over verbosity."""
                     st.markdown(user_input)
                 
                 # Generate response
-                with st.chat_message("assistant", avatar="public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp"):
+                with st.chat_message("assistant", avatar="🤖"):
                     with st.spinner("Searching Iowa wells database..."):
                         try:
                             # Get response

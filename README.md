@@ -8,7 +8,7 @@ A beautiful and intelligent chat interface for exploring Iowa geological wells d
 - 📊 **Context Source Display**: See exactly where information comes from
 - 🗺️ **MCR Geographic Intelligence**: Understands Mid-Continental Rift vs non-MCR counties
 - 💬 **Chat History**: Keep track of your conversation
-- 🎨 **Professional Branding**: NHV logos and clean interface design
+- 🎨 **Clean Interface**: Professional design and user experience
 - ⚡ **Real-time Search**: Powered by Pinecone vector database and OpenAI embeddings
 - 🔗 **Clickable Well Links**: Direct links to GeoSam well database
 
