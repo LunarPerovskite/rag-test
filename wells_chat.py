@@ -593,7 +593,9 @@ Always prefer accuracy and clarity over verbosity."""
                         self.display_context_sources(message["sources"])
             
             # Chat input - always visible at the bottom
-                user_input = st.chat_input("Ask me anything about geological wells...")            # Handle example query selection
+            user_input = st.chat_input("Ask me anything about geological wells...")
+            
+            # Handle example query selection
             if hasattr(st.session_state, 'example_query'):
                 user_input = st.session_state.example_query
                 delattr(st.session_state, 'example_query')
