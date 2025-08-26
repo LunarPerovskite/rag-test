@@ -6,39 +6,57 @@ A beautiful and intelligent chat interface for exploring Iowa geological wells d
 
 - 🎯 **Intelligent Query Processing**: Ask natural language questions about Iowa wells
 - 📊 **Context Source Display**: See exactly where information comes from
-- 🗺️ **Comprehensive Metadata**: Well IDs, counties, depths, drilling companies, and more
+- 🗺️ **MCR Geographic Intelligence**: Understands Mid-Continental Rift vs non-MCR counties
 - 💬 **Chat History**: Keep track of your conversation
-- 🎨 **Modern UI**: Beautiful Streamlit interface with responsive design
+- 🎨 **Professional Branding**: NHV logos and clean interface design
 - ⚡ **Real-time Search**: Powered by Pinecone vector database and OpenAI embeddings
+- 🔗 **Clickable Well Links**: Direct links to GeoSam well database
 
-## Quick Start
+## Deployment
 
-### Option 1: PowerShell Launcher (Recommended for Windows)
-```powershell
-# Double-click launch_chat.ps1 or run:
-powershell -ExecutionPolicy Bypass -File launch_chat.ps1
-```
+### Streamlit Cloud Deployment
 
-### Option 2: Python Launcher
+1. **Environment Variables** (Set in Streamlit Cloud dashboard):
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   PINECONE_API_KEY=your_pinecone_api_key_here
+   ```
+
+2. **Main File**: `iowa_wells_chat.py`
+
+3. **Dependencies**: Automatically installed from `requirements.txt`
+
+### Local Development
+
 ```bash
-python launch_chat.py
-```
+# Clone the repository
+git clone https://github.com/LunarPerovskite/rag-test.git
+cd rag-test
 
-### Option 3: Manual Launch
-```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Set up environment variables (copy .env.example to .env and fill in values)
+cp .env.example .env
+
+# Run the application
 streamlit run iowa_wells_chat.py
 ```
 
 ## Prerequisites
 
 1. **Python 3.8+** installed on your system
-2. **Environment Variables**: Ensure you have `.env` file in `../8_vectordb/` with:
-   ```
-   OPENAI_API_KEY=your_openai_api_key_here
-   PINECONE_API_KEY=your_pinecone_api_key_here
-   ```
-3. **Vector Database**: The Pinecone index `nhv-iowa-wells` should be populated (created by `../8_vectordb/build_pinecone_vectordb.py`)
+2. **Environment Variables**: 
+   - `OPENAI_API_KEY`: Your OpenAI API key
+   - `PINECONE_API_KEY`: Your Pinecone API key
+3. **Vector Database**: The Pinecone index `nhv-iowa-wells` should be populated with 551 Iowa wells data
+
+## MCR Geographic Intelligence
+
+The system understands the Mid-Continental Rift (MCR) geography with 58 counties classified as within the rift zone. Ask questions like:
+- "What's the deepest well inside the MCR?"
+- "Compare formation depths between MCR and non-MCR counties"
+- "Show me oil shows outside the MCR"
 
 ## Example Queries
 
