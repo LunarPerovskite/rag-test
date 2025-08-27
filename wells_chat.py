@@ -472,12 +472,23 @@ Always prefer accuracy and clarity over verbosity."""
     
     def run(self):
         """Run the main chat interface."""
-        # Header with GEARS Map branding
+        # Header with NHV and GEARS Map branding
         col1, col2, col3 = st.columns([1, 2, 1])
         
-        # Main title (center)
+        # NHV Logo (center)
         with col2:
-            st.markdown('<h1 class="main-header">🏔️ Wells RAG Chat</h1>', unsafe_allow_html=True)
+            try:
+                import base64
+                with open("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Full.webp", "rb") as f:
+                    logo_data = base64.b64encode(f.read()).decode()
+                st.markdown(
+                    f'<div style="text-align: center; margin-bottom: 1rem;">'
+                    f'<img src="data:image/webp;base64,{logo_data}" width="300" style="max-width: 100%;">'
+                    f'</div>', 
+                    unsafe_allow_html=True
+                )
+            except:
+                st.markdown('<h1 class="main-header">🏔️ Wells RAG Chat</h1>', unsafe_allow_html=True)
         
         # GEARS Map logo (top right)
         with col3:
@@ -580,7 +591,18 @@ Always prefer accuracy and clarity over verbosity."""
             
             # Display chat messages
             for message in st.session_state.messages:
-                avatar = "🤖" if message["role"] == "assistant" else None
+                if message["role"] == "assistant":
+                    avatar = "🤖"
+                else:
+                    # Use NHV Swan logo for user messages
+                    try:
+                        import base64
+                        with open("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp", "rb") as f:
+                            swan_data = base64.b64encode(f.read()).decode()
+                        avatar = f'<img src="data:image/webp;base64,{swan_data}" width="24" style="border-radius: 50%;">'
+                    except:
+                        avatar = None
+                
                 with st.chat_message(message["role"], avatar=avatar):
                     # Add well links to assistant messages
                     content = message["content"]
@@ -605,8 +627,16 @@ Always prefer accuracy and clarity over verbosity."""
                 # Add user message
                 st.session_state.messages.append({"role": "user", "content": user_input})
                 
-                # Display user message
-                with st.chat_message("user"):
+                # Display user message with NHV Swan logo
+                try:
+                    import base64
+                    with open("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp", "rb") as f:
+                        swan_data = base64.b64encode(f.read()).decode()
+                    user_avatar = f'<img src="data:image/webp;base64,{swan_data}" width="24" style="border-radius: 50%;">'
+                except:
+                    user_avatar = None
+                
+                with st.chat_message("user", avatar=user_avatar):
                     st.markdown(user_input)
                 
                 # Generate response
