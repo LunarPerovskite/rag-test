@@ -9,8 +9,8 @@ import streamlit as st
 
 # Configure Streamlit page - MUST BE FIRST!
 st.set_page_config(
-    page_title="Wells RAG Chat",
-    page_icon="🏔️",
+    page_title="NHV Wells RAG Chat",
+    page_icon="public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -594,14 +594,8 @@ Always prefer accuracy and clarity over verbosity."""
                 if message["role"] == "assistant":
                     avatar = "🤖"
                 else:
-                    # Use NHV Swan logo for user messages
-                    try:
-                        import base64
-                        with open("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp", "rb") as f:
-                            swan_data = base64.b64encode(f.read()).decode()
-                        avatar = f'<img src="data:image/webp;base64,{swan_data}" width="24" style="border-radius: 50%;">'
-                    except:
-                        avatar = None
+                    # Use swan emoji for user messages (representing NHV)
+                    avatar = "🦢"
                 
                 with st.chat_message(message["role"], avatar=avatar):
                     # Add well links to assistant messages
@@ -627,16 +621,8 @@ Always prefer accuracy and clarity over verbosity."""
                 # Add user message
                 st.session_state.messages.append({"role": "user", "content": user_input})
                 
-                # Display user message with NHV Swan logo
-                try:
-                    import base64
-                    with open("public/Natural+Hydrogen+Ventures+(NHV)+Logo+-+Swan.webp", "rb") as f:
-                        swan_data = base64.b64encode(f.read()).decode()
-                    user_avatar = f'<img src="data:image/webp;base64,{swan_data}" width="24" style="border-radius: 50%;">'
-                except:
-                    user_avatar = None
-                
-                with st.chat_message("user", avatar=user_avatar):
+                # Display user message with NHV Swan emoji
+                with st.chat_message("user", avatar="🦢"):
                     st.markdown(user_input)
                 
                 # Generate response
